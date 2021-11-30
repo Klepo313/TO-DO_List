@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO-DO list</title>
-
+    <link rel="icon" type="image/x-icon" href="slike/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -35,7 +36,43 @@
 -->
 
     <main>
-        
+        <section class="section1">
+            <h3>Todo List</h3>
+        </section>
+        <section class="section2">
+            <div class="container">
+                <form>
+                    <img class="icon" src="slike/Vector.svg">
+                    <input type="text" class="mainInputs" id="inputAddTask" placeholder="Add a task..." required>
+
+                    <img class="icon icon2" src="slike/Vector1.svg">
+                    <input type="date" class="mainInputs" id="inputPickADate" placeholder="Pick a date" required>
+
+                    <button type="button" id="btnAddTask">Add a task</button>
+                </form>
+            </div>
+
+            <div class="task-list">
+                <div class="task">
+                    <div class="left-ctn">
+                        <input type="checkbox" id="checkbox">
+                        <div class="task-content">
+                            <span id="taskHeader">
+                                Get ready for the morning!
+                            </span>
+                            <span id="taskDate">
+                                27.07.2017.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="taskActions">
+                        <i class="fas fa-check"></i>
+                        <i class="fas fa-pen"></i>
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
 </body>
