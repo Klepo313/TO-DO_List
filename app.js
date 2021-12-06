@@ -76,8 +76,12 @@ function addTaskFn(){
 
 function deleteTask(button){
   /*alert("Are you sure you want to delete this task?!");*/
-  let task_list = button.parentNode.parentNode
-  task_list.parentNode.removeChild(task_list)
+  if(confirm("Are you sure you want to delete this task?")){
+    let task_list = button.parentNode.parentNode
+    task_list.parentNode.removeChild(task_list)
+  } else{
+
+  }
 }
 function editTask(button){
   let task = button.parentNode.parentNode
