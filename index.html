@@ -19,12 +19,12 @@
             <div class="container">
                 <form>
                     <img class="icon" src="slike/Vector.svg">
-                    <input type="text" class="mainInputs" id="inputAddTask" placeholder="Add a task..." required>
+                    <input required type="text" class="mainInputs" id="inputAddTask" placeholder="Add a task..." required>
 
                     <img class="icon icon2" src="slike/Vector1.svg">
-                    <input type="date" class="mainInputs" id="inputPickADate" placeholder="Pick a date" required>
+                    <input required type="date" class="mainInputs" id="inputPickADate" placeholder="Pick a date" required>
 
-                    <button type="button" id="btnAddTask">Add a task</button>
+                    <button type="button" onclick="addTaskFn()" id="btnAddTask">Add a task</button>
                 </form>
             </div>
 
@@ -33,25 +33,21 @@
                     <div class="left-ctn">
                         <input type="checkbox" id="checkbox">
                         <div class="task-content">
-                            <span id="taskHeader">
-                                Get ready for the morning!
-                            </span>
-                            <span id="taskDate">
-                                27.07.2017.
-                            </span>
+                            <input type="text" value="Example Task" id="taskHeader" readonly>
+                            <input type="text" value="2021-07-07" id="taskDate" readonly>      
                         </div>
                     </div>
                     <div class="taskActions">
                         <i class="fas fa-check"></i>
-                        <i class="fas fa-pen"></i>
-                        <i class="fas fa-trash-alt"></i>
+                        <i class="fas fa-pen" onclick="editTask(this)"></i>
+                        <i class="fas fa-trash-alt" onclick="deleteTask(this)"></i>
                     </div>
                 </div>
-
-            
             </div>
         </section>
     </main>
 
+
+    <script src="app.js"></script>
 </body>
 </html>

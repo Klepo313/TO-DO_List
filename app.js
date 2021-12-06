@@ -24,7 +24,7 @@ const analytics = getAnalytics(app);
 var taskHeader = document.getElementById("taskHeader");
 
 var dbRef = firebase.database().ref()
-dbRef.on('value', snap => taskHeader.innerText = snap.val())*/
+dbRef.on('value', snap => taskHeader.innerText = snap.val())
 
 var taskName = document.getElementById("inputAddTask")
 var date = document.getElementById("inputPickADate");
@@ -52,3 +52,40 @@ btnAddTask.addEventListener("click", function(){
     ijevi[i].classList.add(fas[i])
   }
 })
+*/
+
+var taskName = document.getElementById("inputAddTask")
+var date = document.getElementById("inputPickADate")
+var btnAddTask = document.getElementById("btnAddTask");
+var submit = document.getElementsByClassName("fas")[0];
+
+var task = document.querySelector(".task")
+
+function addTaskFn(){
+  if(taskName.value == null || taskName.value == "" || date.value == "" || date.value == null){
+    alert("Please fill all empty fields!");
+    return false;
+  }
+
+  var newTask = task.cloneNode(true);
+  task_list.appendChild(newTask);
+
+  newTask.querySelector("#taskHeader").value = taskName.value;
+  newTask.querySelector("#taskDate").value = date.value;
+}
+
+function deleteTask(button){
+  /*alert("Are you sure you want to delete this task?!");*/
+  let task_list = button.parentNode.parentNode
+  task_list.parentNode.removeChild(task_list)
+}
+function editTask(button){
+  let task = button.parentNode.parentNode
+  task.querySelector("#taskHeader").readOnly = false
+  task.querySelector("#taskHeader").style.borderBottom = "1px solid white"
+}
+submit.addEventListener("click", function(){
+  task.querySelector("#taskHeader").readOnly = true
+  task.querySelector("#taskHeader").style.borderBottom = "none"
+})
+
