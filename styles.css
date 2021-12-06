@@ -144,12 +144,12 @@ form{
 .left-ctn{
     display: flex;
     justify-content: space-between;
-    width: 55%;
 }
 #checkbox{
     margin-top: 4px;
 }
 .task-content{
+    padding-left: 20px;
     font-size: 15px;
     display: flex;
     flex-direction: column;
