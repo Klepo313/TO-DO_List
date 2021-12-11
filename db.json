@@ -1,0 +1,14 @@
+{
+    "tasks": [
+        {
+            "ts_id": 1,
+            "ts_name": "Dohvaćeno iz JSONa!",
+            "ts_date": "2021-12-12"
+        },
+        {
+            "ts_id": 2,
+            "ts_name": "Bila boja je boja",
+            "ts_date": "2021-12-24"
+        }
+    ]
+}
