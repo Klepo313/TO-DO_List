@@ -1,14 +1,24 @@
-//npm install browserify-fs
-var taskName = document.getElementById("inputAddTask")
-var date = document.getElementById("inputPickADate")
-var btnAddTask = document.getElementById("btnAddTask");
-var submit = document.getElementsByClassName("fas")[0];
 
-var task = document.querySelector(".task")
+
+/*var task = '<div class="task">' +
+                    '<div class="left-ctn">'+ 
+                        '<input type="checkbox" id="checkbox">'+
+                        '<div class="task-content">'+
+                            '<input type="text" value="Example Task" id="taskHeader" readonly>'+
+                            '<input type="text" value="2021-07-07" id="taskDate" readonly>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="taskActions">'+
+                        '<i class="fas fa-check" onclick="submitChanges(this)"></i>'+
+                        '<i class="fas fa-pen" onclick="editTask(this)"></i>'+
+                        '<i class="fas fa-trash-alt" onclick="deleteTask(this)"></i>'+
+                    '</div>'+
+                '</div>'
+*/
 
 /*JAVASCRIPT*/
 
-fetch('./db.json')
+/*fetch('./db.json')
   .then(response => {
     return response.json();
   })
@@ -24,22 +34,9 @@ fetch('./db.json')
       newTask.querySelector("#taskDate").value = data.tasks[i].ts_date
     }
 
-})
+})*/
 
-function addTaskFn(){
-  let task_list = document.querySelector(".task-list")
-  if(taskName.value == null || taskName.value == "" || date.value == "" || date.value == null){
-    alert("Please fill all empty fields!");
-    return false;
-  }
-
-  let newTask = task.cloneNode(true)
-  task_list.appendChild(newTask);
-
-  newTask.querySelector("#taskHeader").value = taskName.value
-  newTask.querySelector("#taskDate").value = date.value
-
-  fetch('./db.json')
+/*fetch('./db.json')
     .then(response => {
       return response.json();
     })
@@ -55,6 +52,64 @@ function addTaskFn(){
 
     })
     .catch((err) => console.log(err));
+*/
+
+//npm install browserify-fs
+var taskName = document.getElementById("inputAddTask")
+var date = document.getElementById("inputPickADate")
+var btnAddTask = document.getElementById("btnAddTask");
+var submit = document.getElementsByClassName("fas")[0];
+
+var task = document.querySelector(".task")
+
+
+function getDataFromLocalStorage(){
+
+    let task_list = document.querySelector(".task-list")
+    let taskIzSt = JSON.parse(window.localStorage.getItem('task'))
+
+    if(taskIzSt.ts_name==="" && taskIzSt.ts_name === ""){
+
+    } else{
+        let newTask = task.cloneNode(true)
+        task_list.appendChild(newTask);
+      
+        newTask.querySelector("#taskHeader").value = taskIzSt.ts_name
+        newTask.querySelector("#taskDate").value = taskIzSt.ts_date
+    }
+  
+}
+
+console.log(window.localStorage)
+
+function clearLocalStorage(){
+  window.localStorage.clear();
+  location.reload();
+}
+
+function addTaskFn(){
+  let task_list = document.querySelector(".task-list")
+
+  const LS_task = {
+    ts_name: taskName.value,
+    ts_date: date.value
+  }
+
+  if(taskName.value == null || taskName.value == "" || date.value == "" || date.value == null){
+    alert("Please fill all empty fields!");
+    return false;
+  }
+    let newTask = task.cloneNode(true)
+    task_list.appendChild(newTask);
+  
+    window.localStorage.setItem('task', JSON.stringify(LS_task))
+    let taskIzSt = JSON.parse(window.localStorage.getItem('task'))
+  
+    newTask.querySelector("#taskHeader").value = taskIzSt.ts_name
+    newTask.querySelector("#taskDate").value = taskIzSt.ts_date
+
+    console.log(window.localStorage)
+
 }
 
 function deleteTask(button){
@@ -78,3 +133,5 @@ function submitChanges(button){
   task.querySelector("#taskHeader").readOnly = true
   task.querySelector("#taskHeader").style.borderBottom = "none"
 }
+
+getDataFromLocalStorage();

@@ -47,6 +47,7 @@ body{
     width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -122,9 +123,9 @@ form{
     font-size: 15px;
     outline: none;
 }
-.mainInputs:focus{
+/* .mainInputs:focus{
     width: 95%;
-}
+} */
 #btnAddTask{
     border: none;
     outline: none;
@@ -202,4 +203,9 @@ form{
     transform: scale(1.2);
     filter: grayscale(0);
     cursor: pointer;
+}
+
+#btnClearAll{
+    color: #2f343a;
+    margin-top: 10px;
 }
