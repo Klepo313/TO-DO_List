@@ -62,17 +62,19 @@ var task = document.querySelector(".task")
 let todos = []
 
 function getDataFromLocalStorage(){
-    const taskIzSt = JSON.parse(localStorage.getItem('todos'))
+  
+    console.log(localStorage)
+    let taskIzSt = JSON.parse(localStorage.getItem('todos'))
 
     if(taskIzSt){
       let task_list = document.querySelector(".task-list")
       let newTask = task.cloneNode(true)
 
-      for(let i = 0; i < todos.length; i++) {
-        newTask.querySelector("#taskHeader").value = todos[i].ts_name
-        newTask.querySelector("#taskDate").value = todos[i].ts_date
+      for(let i = 0; i < taskIzSt.length; i++) {
+        newTask.querySelector("#taskHeader").value = taskIzSt[i].ts_name
+        newTask.querySelector("#taskDate").value = taskIzSt[i].ts_date
 
-        if(todos[i].completed === true) {
+        if(taskIzSt[i].completed === true) {
           newTask.querySelector(".checkbox").checked = true
         } else{
           newTask.querySelector(".checkbox").checked === false
@@ -94,6 +96,7 @@ function addTodo(){
     alert("Please fill all empty fields!");
     return false;
   } 
+
   else{
     
     const LS_task = {
@@ -103,14 +106,14 @@ function addTodo(){
     }
 
     todos.push(LS_task)
-
-    localStorage.setItem('todos', JSON.stringify(todos));
     
     let newTask = task.cloneNode(true)
     task_list.appendChild(newTask);
 
     newTask.querySelector("#taskHeader").value = taskName.value
     newTask.querySelector("#taskDate").value = date.value
+
+    localStorage.setItem('todos', JSON.stringify(todos));
 
     console.log(todos)
     console.log(localStorage)
