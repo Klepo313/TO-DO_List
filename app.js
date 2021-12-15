@@ -16,8 +16,6 @@
                 '</div>'
 */
 
-/*JAVASCRIPT*/
-
 /*fetch('./db.json')
   .then(response => {
     return response.json();
@@ -59,67 +57,89 @@ var taskName = document.getElementById("inputAddTask")
 var date = document.getElementById("inputPickADate")
 var btnAddTask = document.getElementById("btnAddTask");
 var submit = document.getElementsByClassName("fas")[0];
-
 var task = document.querySelector(".task")
 
+let todos = []
 
 function getDataFromLocalStorage(){
+    const taskIzSt = JSON.parse(localStorage.getItem('todos'))
 
-    let task_list = document.querySelector(".task-list")
-    let taskIzSt = JSON.parse(window.localStorage.getItem('task'))
+    if(taskIzSt){
+      let task_list = document.querySelector(".task-list")
+      let newTask = task.cloneNode(true)
 
-    if(taskIzSt.ts_name==="" && taskIzSt.ts_name === ""){
+      for(let i = 0; i < todos.length; i++) {
+        newTask.querySelector("#taskHeader").value = todos[i].ts_name
+        newTask.querySelector("#taskDate").value = todos[i].ts_date
 
-    } else{
-        let newTask = task.cloneNode(true)
+        if(todos[i].completed === true) {
+          newTask.querySelector(".checkbox").checked = true
+        } else{
+          newTask.querySelector(".checkbox").checked === false
+        }
+
         task_list.appendChild(newTask);
-      
-        newTask.querySelector("#taskHeader").value = taskIzSt.ts_name
-        newTask.querySelector("#taskDate").value = taskIzSt.ts_date
+      }
+        // newTask.querySelector("#taskHeader").value = todos[i].ts_name
+        // newTask.querySelector("#taskDate").value = todos[i].date
+        // newTask.querySelector("#checkbox").checked = todos[i].completed
     }
-  
 }
 
-console.log(window.localStorage)
-
-function clearLocalStorage(){
-  window.localStorage.clear();
-  location.reload();
-}
-
-function addTaskFn(){
+function addTodo(){
+  let taskIzSt = JSON.parse(window.localStorage.getItem('todos'))
   let task_list = document.querySelector(".task-list")
-
-  const LS_task = {
-    ts_name: taskName.value,
-    ts_date: date.value
-  }
 
   if(taskName.value == null || taskName.value == "" || date.value == "" || date.value == null){
     alert("Please fill all empty fields!");
     return false;
-  }
+  } 
+  else{
+    
+    const LS_task = {
+      ts_name: taskName.value,
+      ts_date: date.value,
+      completed: false
+    }
+
+    todos.push(LS_task)
+
+    localStorage.setItem('todos', JSON.stringify(todos));
+    
     let newTask = task.cloneNode(true)
     task_list.appendChild(newTask);
-  
-    window.localStorage.setItem('task', JSON.stringify(LS_task))
-    let taskIzSt = JSON.parse(window.localStorage.getItem('task'))
-  
-    newTask.querySelector("#taskHeader").value = taskIzSt.ts_name
-    newTask.querySelector("#taskDate").value = taskIzSt.ts_date
 
-    console.log(window.localStorage)
+    newTask.querySelector("#taskHeader").value = taskName.value
+    newTask.querySelector("#taskDate").value = date.value
+
+    console.log(todos)
+    console.log(localStorage)
+  }
 
 }
 
-function deleteTask(button){
-  /*alert("Are you sure you want to delete this task?!");*/
-  if(confirm("Are you sure you want to delete this task?")){
-    let task_list = button.parentNode.parentNode
-    task_list.parentNode.removeChild(task_list)
-  } else{
+// function addToLocalStorage(todos) {
+//   localStorage.setItem('todos', JSON.stringify(todos));
+// }
 
-  }
+// function isCompleted(l_date) {
+//   todos.forEach((todo_item) => {
+//     if (todo_item.id == l_date) {
+//       todo_item.completed = !todo_item.completed;
+//     }
+//   })
+
+//   addToLocalStorage(todos);
+// }
+
+function deleteTask(button){
+  let task_list = button.parentNode.parentNode
+
+  if(confirm("Are you sure you want to delete this task?")){
+    task_list.parentNode.removeChild(task_list)
+    localStorage.removeItem('todos');
+  } 
+
 }
 
 function editTask(button){
@@ -132,6 +152,11 @@ function submitChanges(button){
   let task = button.parentNode.parentNode
   task.querySelector("#taskHeader").readOnly = true
   task.querySelector("#taskHeader").style.borderBottom = "none"
+}
+
+function clearLocalStorage(){
+  window.localStorage.clear();
+  location.reload();
 }
 
 getDataFromLocalStorage();

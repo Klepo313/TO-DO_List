@@ -24,16 +24,16 @@
                     <img class="icon icon2" src="slike/Vector1.svg">
                     <input required type="date" class="mainInputs" id="inputPickADate" placeholder="Pick a date" required>
 
-                    <button type="button" onclick="addTaskFn()" id="btnAddTask">Add a task</button>
+                    <button type="button" onclick="addTodo()" id="btnAddTask">Add a task</button>
                 </form>
             </div>
 
             <div class="task-list">
                 <div class="task">
                     <div class="left-ctn">
-                        <input type="checkbox" id="checkbox">
+                        <input type="checkbox" id="checkbox" class="checkbox">
                         <div class="task-content">
-                            <input type="text" value="Example Task" id="taskHeader" readonly>
+                            <input type="text" value="Example task for development" id="taskHeader" readonly>
                             <input type="text" value="2021-07-07" id="taskDate" readonly>      
                         </div>
                     </div>
