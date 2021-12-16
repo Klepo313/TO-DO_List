@@ -66,7 +66,11 @@ function getDataFromLocalStorage(){
     console.log(localStorage)
     let taskIzSt = JSON.parse(localStorage.getItem('todos'))
 
+    console.log("taskIzSt")
+    console.log(taskIzSt)
+
     if(taskIzSt){
+
       for(let i = 0; i < taskIzSt.length; i++) {
         let task_list = document.querySelector(".task-list")
         let newTask = task.cloneNode(true)
