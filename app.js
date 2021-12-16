@@ -66,11 +66,15 @@ function getDataFromLocalStorage(){
     console.log(localStorage)
     let taskIzSt = JSON.parse(localStorage.getItem('todos'))
 
+    console.log("taskIzSt")
+    console.log(taskIzSt)
+
     if(taskIzSt){
-      let task_list = document.querySelector(".task-list")
-      let newTask = task.cloneNode(true)
 
       for(let i = 0; i < taskIzSt.length; i++) {
+        let task_list = document.querySelector(".task-list")
+        let newTask = task.cloneNode(true)
+        
         newTask.querySelector("#taskHeader").value = taskIzSt[i].ts_name
         newTask.querySelector("#taskDate").value = taskIzSt[i].ts_date
 
@@ -89,7 +93,6 @@ function getDataFromLocalStorage(){
 }
 
 function addTodo(){
-  let taskIzSt = JSON.parse(window.localStorage.getItem('todos'))
   let task_list = document.querySelector(".task-list")
 
   if(taskName.value == null || taskName.value == "" || date.value == "" || date.value == null){
