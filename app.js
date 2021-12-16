@@ -160,7 +160,8 @@ function deleteTask(button){
 
     for(let i=0; i<data.length; i++) {
       if(data[i].ts_name == task_header.value){
-        data.splice(i, 1);
+        data.splice(i, 1)
+        todos.splice(i, 1)
       }
     }
 
@@ -169,6 +170,7 @@ function deleteTask(button){
     
     for(let i=0; i<data.length; i++) {
       console.log(data[i])
+      break;
     }
 
     localStorage.setItem("todos", JSON.stringify(data));
@@ -200,7 +202,10 @@ function submitChanges(button){
   for(let i=0; i<data.length; i++) {
     if(data[i].ts_name == temp_header){
       data[i].ts_name = task_header.value
+      todos[i].ts_name = task_header.value
+
       localStorage.setItem("todos", JSON.stringify(data));
+      break;
     }
   }
 
