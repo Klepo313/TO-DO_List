@@ -202,7 +202,7 @@ function submitChanges(button){
   for(let i=0; i<data.length; i++) {
     if(data[i].ts_name == temp_header){
       data[i].ts_name = task_header.value
-      todos[i].ts_name = task_header.value
+      //todos[i].ts_name = task_header.value
 
       localStorage.setItem("todos", JSON.stringify(data));
       break;
