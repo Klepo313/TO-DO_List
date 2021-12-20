@@ -212,6 +212,15 @@ form{
 }
 
 #btnClearAll{
-    color: #2f343a;
+    color: white;
     margin-top: 10px;
+    background: none;
+    padding: 10px;
+    outline: none;
+    border: 2px solid #2f343a;
+    border-radius: 5px;
+}
+#btnClearAll:hover{
+    transform: scale(0.97);
+    cursor: pointer;
 }
